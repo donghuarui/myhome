@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Button @click="testone" size="large" type="success">点击</Button>
+    <Button @click="testone" size="large" type="success">点击77</Button>
   </div>
 </template>
 
