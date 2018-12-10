@@ -1,15 +1,13 @@
 # myhome
 个人网站前端部分
 =======
-# baoge
-
 > A Vue.js project
 
 ## Build Setup
 
 ``` bash
 # install dependencies
-npm install3
+npm install
 
 # serve with hot reload at localhost:8080
 npm run dev
@@ -29,5 +27,5 @@ npm run e2e
 # run all tests
 npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+#git地址
+https://github.com/donghuarui/myhome.git
