@@ -1,13 +1,16 @@
 <template>
   <div>
-    <Button @click="testone" size="large" type="success">点击</Button>
+    <MyHead></MyHead>
+    <!--<Button @click="testone" size="large" type="success">点击</Button>-->
   </div>
 </template>
 
 <script>
 import {mapActions} from 'vuex'
+import MyHead from '../components/myhead/myhead'
 export default {
   name: 'HelloWorld',
+  components: {MyHead},
   data () {
     return {
     }
