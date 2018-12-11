@@ -1,18 +1,34 @@
 <template>
   <div>
-    <Menu mode="horizontal" :theme="theme1" active-name="1">
+    <Menu mode="horizontal" :theme="theme1" active-name="1" style="margin-top: 0px">
       <MenuItem name="1">
         <Icon type="ios-paper" />
-        内容管理
+        我的主页
       </MenuItem>
       <MenuItem name="2">
         <Icon type="ios-people" />
-        用户管理
+        日志
+      </MenuItem>
+      <MenuItem name="2">
+        <Icon type="ios-people" />
+        相册
+      </MenuItem>
+      <MenuItem name="2">
+        <Icon type="ios-people" />
+        留言板
+      </MenuItem>
+      <MenuItem name="2">
+        <Icon type="ios-people" />
+        说说
+      </MenuItem>
+      <MenuItem name="2">
+        <Icon type="ios-people" />
+        个人档
       </MenuItem>
       <Submenu name="3">
         <template slot="title">
           <Icon type="ios-stats" />
-          统计分析
+          用户管理
         </template>
         <MenuGroup title="使用">
           <MenuItem name="3-1">新增和启动</MenuItem>
@@ -28,6 +44,7 @@
         <Icon type="ios-construct" />
         综合设置
       </MenuItem>
+      <User></User>
     </Menu>
     <!--<Button @click="testone" size="large" type="success">点击</Button>-->
   </div>
@@ -35,7 +52,9 @@
 
 <script>
 import {mapActions} from 'vuex'
+import User from './user/user'
 export default {
+  components: {User},
   name: 'myhead',
   data () {
     return {

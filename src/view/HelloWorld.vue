@@ -1,6 +1,7 @@
 <template>
   <div>
     <MyHead></MyHead>
+    <MyNeck></MyNeck>
     <!--<Button @click="testone" size="large" type="success">点击</Button>-->
   </div>
 </template>
@@ -8,9 +9,10 @@
 <script>
 import {mapActions} from 'vuex'
 import MyHead from '../components/myhead/myhead'
+import MyNeck from '../components/myneck/myneck'
 export default {
   name: 'HelloWorld',
-  components: {MyHead},
+  components: {MyHead, MyNeck},
   data () {
     return {
     }
