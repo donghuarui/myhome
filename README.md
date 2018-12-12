@@ -29,3 +29,8 @@ npm test
 ```
 #git地址
 https://github.com/donghuarui/myhome.git
+
+
+#less 安装
+npm install -g less
+npm install less less-loader --save
