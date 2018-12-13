@@ -34,3 +34,17 @@ https://github.com/donghuarui/myhome.git
 #less 安装
 npm install -g less
 npm install less less-loader --save
+
+2018年12月13日20:35:39
+#配置外网域名映入
+调用后台api地址  http://178w5920e8.iok.la/SpringBootJpa
+config/proxyConfig 中改为域名访问
+config/index  中host改为本地ip地址
+
+此时
+解决Invalid Host header错误
+build/webpack.base.conf.js中添加  
+  devServer: {
+       disableHostCheck: true,
+     }
+域名 http://ezreal19950922.vicp.io/#/
