@@ -46,5 +46,5 @@ config/index  中host改为本地ip地址
 build/webpack.base.conf.js中添加  
   devServer: {
        disableHostCheck: true,
-     }
+     } 
 域名 http://ezreal19950922.vicp.io/#/
