@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Menu mode="horizontal" :theme="theme1" active-name="1" style="margin-top: 0px">
+    <Menu mode="horizontal" :theme="theme1" active-name="1" style="margin-top: 0px" @on-select="selectMenu">
       <MenuItem name="1">
         <Icon type="ios-paper" />
         我的主页
@@ -31,7 +31,7 @@
           用户管理
         </template>
         <MenuGroup title="使用">
-          <MenuItem name="3-1">新增和启动</MenuItem>
+          <MenuItem name="userList">用户列表</MenuItem>
           <MenuItem name="3-2">活跃分析</MenuItem>
           <MenuItem name="3-3">时段分析</MenuItem>
         </MenuGroup>
@@ -46,25 +46,38 @@
       </MenuItem>
       <User></User>
     </Menu>
-    <!--<Button @click="testone" size="large" type="success">点击</Button>-->
+    <UserListModal ref = 'userListRef'></UserListModal>
+    <!--<Button @click="testOne" size="large" type="success">点击</Button>-->
   </div>
 </template>
 
 <script>
 import {mapActions} from 'vuex'
 import User from './user/user'
+import UserListModal from './user/UserListModal'
 export default {
-  components: {User},
+  components: {User, UserListModal},
   name: 'myhead',
   data () {
     return {
-      theme1: 'dark'
+      theme1: 'dark',
+      userListStatus: false
     }
   },
   methods: {
     ...mapActions(['test']),
-    testone () {
+    testOne () {
       this.test()
+    },
+    selectMenu (name) {
+      switch (name) {
+        case 'userList' :
+          this.userList()
+          break
+      }
+    },
+    userList () {
+      this.$refs.userListRef.changeModal(true)
     }
   },
   computed: {

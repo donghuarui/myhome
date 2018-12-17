@@ -3,6 +3,8 @@
 import userservice from '@/service/userservice'
 export default {
   state: {
+    userListData: [],
+    userListTotal: 0,
     username: '',
     userId: '',
     avatorImgPath: '',
@@ -10,6 +12,11 @@ export default {
     access: ''
   },
   mutations: {
+    setUserListData (state, res) {
+      console.log('res', res)
+      state.userListData = res.content
+      state.userListTotal = res.totalElements
+    },
     setAvator (state, avatorPath) {
       state.avatorImgPath = avatorPath
     },
@@ -22,14 +29,18 @@ export default {
     setAccess (state, access) {
       state.access = access
     }
-    // setToken (state, token) {
-    //   state.token = token
-    //   setToken(token)
-    // }
   },
   actions: {
     test () {
       userservice.test()
+    },
+    getUserListData ({state, commit}, page) {
+      // let pageNum = page.pageNum
+      // let pageSize = page.pageSize
+      userservice.getUserListData(page).then(res => {
+        let data = res.data
+        commit('setUserListData', data.data)
+      })
     },
     handleLogin ({ commit }, {username, password}) {
       console.log('eeee', username, password)
@@ -40,14 +51,7 @@ export default {
           password}).then(res => {
           const data = res.data.data
           console.log('data', data)
-          if (data !== undefined) {
-            //   commit('setToken', data.token)
-            console.log('res', res)
-            resolve()
-          } else {
-            // this.$Message.error('用户名或密码错误')
-            alert('用户名或密码错误')
-          }
+          resolve(data)
         }).catch(err => {
           reject(err)
         })

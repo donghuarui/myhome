@@ -9,7 +9,6 @@ import iView from 'iview'
 import './index.less'
 import 'iview/dist/styles/iview.css'
 import config from '@/config'
-
 /**
  * @description 全局注册应用配置
  */

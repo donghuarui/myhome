@@ -13,5 +13,12 @@ export default {
       method: 'post',
       params
     })
+  },
+  getUserListData (page) {
+    return axios.request({
+      url: 'api/user/getAll',
+      method: 'get',
+      params: page
+    })
   }
 }

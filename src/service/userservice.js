@@ -8,7 +8,9 @@ export default {
     //   userName,
     //   password
     // }
-    console.log('data', data)
     return userapi.login(data)
+  },
+  getUserListData (page) {
+    return userapi.getUserListData(page)
   }
 }
