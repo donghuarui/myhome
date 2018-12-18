@@ -67,6 +67,16 @@ export default {
         // })
       })
     },
+    registerAction ({state, commit}, o) {
+      return new Promise((resolve, reject) => {
+        userservice.register(o).then(res => {
+          // const data = res.data.data
+          // resolve(data)
+        }).catch(err => {
+          reject(err)
+        })
+      })
+    },
     // // 退出登录
     handleLogOut ({ state, commit }) {
       return new Promise((resolve, reject) => {

@@ -15,24 +15,23 @@
     <Modal
             v-model="addOneModal" width="800"
             title="添加"
-            @on-ok="addOne"
+            @on-ok="addOne('registerRef')"
             @on-cancel="cancel">
-      <Row>
-      <i-Col span="8">
-        <i-Input v-model="username" placeholder="请输入用户名" style="width: auto">
-          <Icon type="ios-contact" slot="prefix" />
-        </i-Input>
-      </i-Col>
-      <i-Col span="8">
-        <i-Input v-model="password" placeholder="请输入密码" style="width: auto">
-          <Icon type="ios-contact" slot="prefix" />
-        </i-Input>
-      </i-Col>
-      <i-Col span="8">
-        状态:
-        <i-Switch v-model="valid" @on-change="change" true-value="1" false-value="0"/>
-      </i-Col>
-    </Row>
+      <Form ref="registerRef" :model="register" :rules="registerRules" inline>
+        <FormItem prop="username">
+          <i-Input type="text" v-model="register.username" placeholder="username">
+          <Icon type="ios-person-outline" slot="prepend"></Icon>
+          </i-Input>
+        </FormItem>
+        <FormItem prop="password">
+          <i-Input type="password" v-model="register.password" placeholder="password">
+          <Icon type="ios-lock-outline" slot="prepend"></Icon>
+          </i-Input>
+        </FormItem>
+        <FormItem>
+          <i-Switch v-model="register.valid" @on-change="change" true-value="1" false-value="0"/>
+        </FormItem>
+      </Form>
     </Modal>
   </div>
 </template>
@@ -47,9 +46,19 @@ export default {
     return {
       UserListModal: false,
       addOneModal: false,
-      username: '',
-      password: '',
-      valid: false,
+      register: {
+        username: '',
+        password: '',
+        valid: false},
+      registerRules: {
+        username: [
+          { required: true, message: 'Please fill in the user name', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: 'Please fill in the password.', trigger: 'blur' },
+          { type: 'string', min: 6, message: 'The password length cannot be less than 6 bits', trigger: 'blur' }
+        ]
+      },
       userListColumns: [
         {
           title: '创建时间',
@@ -142,7 +151,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['getUserListData']),
+    ...mapActions(['getUserListData', 'registerAction']),
     ok () {
     },
     cancel () {
@@ -161,8 +170,15 @@ export default {
     change (status) {
       this.$Message.info('开关状态：' + status)
     },
-    addOne () {
-      alert(1)
+    addOne (name) {
+      this.$refs[name].validate((valid) => {
+        if (valid) {
+          this.registerAction({username: this.register.username, password: this.register.password, valid: this.register.valid})
+          this.$Message.success('Success!')
+        } else {
+          this.$Message.error('请重新填写表单')
+        }
+      })
     }
   }
 
