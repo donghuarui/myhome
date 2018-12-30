@@ -37,5 +37,12 @@ export default {
       method: 'post',
       params
     })
+  },
+  deleteOne (params) {
+    return axios.request({
+      url: 'api/user/deleteOne',
+      method: 'get',
+      params
+    })
   }
 }

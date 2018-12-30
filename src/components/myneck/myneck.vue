@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Carousel autoplay v-model="value2" loop :height="500" radius-dot>
+    <Carousel autoplay v-model="value2" loop :height="500" radius-dot :autoplay-speed="5000">
       <CarouselItem>
        <img src="@/assets/neck_imgs/neck1.jpg" style="width: 100%"/>
       </CarouselItem>

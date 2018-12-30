@@ -49,7 +49,7 @@ export default {
       register: {
         username: '',
         password: '',
-        valid: false},
+        valid: 0},
       registerRules: {
         username: [
           { required: true, message: 'Please fill in the user name', trigger: 'blur' }
@@ -131,6 +131,7 @@ export default {
                 },
                 on: {
                   click: () => {
+                    this.deleteOneClick(params.row.id)
                   }
                 }
               }, '删除')
@@ -151,7 +152,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['getUserListData', 'registerAction']),
+    ...mapActions(['getUserListData', 'registerAction', 'deleteOneClickAction']),
     ok () {
     },
     cancel () {
@@ -173,11 +174,25 @@ export default {
     addOne (name) {
       this.$refs[name].validate((valid) => {
         if (valid) {
-          this.registerAction({username: this.register.username, password: this.register.password, valid: this.register.valid})
-          this.$Message.success('Success!')
+          this.registerAction({username: this.register.username,
+            password: this.register.password,
+            valid: this.register.valid}).then(res => {
+            if (res !== undefined) {
+              this.$Message.success('保存成功!')
+              this.getUserListData(this.page)// 重新加载列表
+            } else {
+              this.$Message.success('保存失败!')
+            }
+          })
         } else {
           this.$Message.error('请重新填写表单')
         }
+      })
+    },
+    deleteOneClick (p) {
+      this.deleteOneClickAction({id: p}).then(res => {
+        this.$Message.success('删除成功!')
+        this.getUserListData(this.page)// 重新加载列表
       })
     }
   }

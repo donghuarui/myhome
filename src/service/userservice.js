@@ -14,8 +14,9 @@ export default {
     return userapi.getUserListData(page)
   },
   register (data) {
-    data.valid = data.valid === true ? 1 : 0
-    console.log('data', data)
     return userapi.register(data)
+  },
+  deleteOne (data) {
+    return userapi.deleteOne(data)
   }
 }

@@ -8,7 +8,7 @@ export default {
     username: '',
     userId: '',
     avatorImgPath: '',
-    // token: getToken(),
+    token: '',
     access: ''
   },
   mutations: {
@@ -28,6 +28,15 @@ export default {
     },
     setAccess (state, access) {
       state.access = access
+    },
+    setToken (state, token) {
+      alert(2)
+      state.token = token
+      sessionStorage.token = token
+    },
+    clearToken (state, token) {
+      state.token = ''
+      sessionStorage.removeItem('token')
     }
   },
   actions: {
@@ -35,8 +44,6 @@ export default {
       userservice.test()
     },
     getUserListData ({state, commit}, page) {
-      // let pageNum = page.pageNum
-      // let pageSize = page.pageSize
       userservice.getUserListData(page).then(res => {
         let data = res.data
         commit('setUserListData', data.data)
@@ -49,29 +56,29 @@ export default {
         userservice.login({
           username,
           password}).then(res => {
-          const data = res.data.data
-          console.log('data', data)
-          resolve(data)
+          const data = res.data
+          commit('setToken', data.data.id)
+          resolve(data.data)
         }).catch(err => {
           reject(err)
         })
-        // login({
-        //   userName,
-        //   password
-        // }).then(res => {
-        //   const data = res.data
-        //   commit('setToken', data.token)
-        //   resolve()
-        // }).catch(err => {
-        //   reject(err)
-        // })
       })
     },
     registerAction ({state, commit}, o) {
       return new Promise((resolve, reject) => {
         userservice.register(o).then(res => {
-          // const data = res.data.data
-          // resolve(data)
+          let data = res.data
+          resolve(data.data)
+        }).catch(err => {
+          reject(err)
+        })
+      })
+    },
+    deleteOneClickAction ({state, commit}, o) {
+      return new Promise((resolve, reject) => {
+        userservice.deleteOne(o).then(res => {
+          let data = res.data
+          resolve(data.data)
         }).catch(err => {
           reject(err)
         })
