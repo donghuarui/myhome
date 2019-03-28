@@ -3,6 +3,9 @@ import Vuex from 'vuex'
 
 import user from './module/user'
 
+// Load the full build.
+var _ = require('lodash')
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({

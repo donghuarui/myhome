@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/view/HelloWorld'
 import login from '@/view/login/login'
+import test1 from '@/view/test1'
 import store from '@/store/index'
 Vue.use(Router)
 const routes = [
@@ -25,7 +26,13 @@ const routes = [
     meta: {
       requireAuth: true // 添加该字段，表示进入这个路由是需要登录的
     }
-  }]
+  },
+  {
+    path: '/Test1',
+    name: 'test1',
+    component: test1
+  }
+]
 // 页面刷新时，重新赋值token
 console.log('ttt', sessionStorage.getItem('token'))
 if (sessionStorage.getItem('token')) {
