@@ -21,13 +21,14 @@ Vue.use(iView, {
 })
 Vue.use(Vuex)
 Vue.config.productionTip = false
+//全局的 axios 默认值
 axios.defaults.headers.common['Authentication-Token'] = store.state.user.token
+
 // 添加请求拦截器
 axios.interceptors.request.use(config => {
 // 在发送请求之前做些什么
 // 判断是否存在token，如果存在将每个页面header都添加token
   if (store.state.user.token) {
-    alert(4)
     config.headers.common['Authentication-Token'] = store.state.user.token
   }
   return config
@@ -35,6 +36,7 @@ axios.interceptors.request.use(config => {
 // 对请求错误做些什么
   return Promise.reject(error)
 })
+
 // http response 拦截器
 axios.interceptors.response.use(
   response => {
@@ -43,11 +45,11 @@ axios.interceptors.response.use(
   error => {
     if (error.response) {
       switch (error.response.status) {
-        case 401:
+        case 401:    // 返回 401 Unauthorized（未授权） 清除token信息并跳转到登录页面 让用户重新登录。
           this.$store.commit('clearToken')
           router.replace({
             path: '/login',
-            query: {redirect: router.currentRoute.fullPath} // 登录成功后跳入浏览的当前页面
+            query: {redirect: router.currentRoute.fullPath}
           })
       }
     }
