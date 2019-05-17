@@ -70,4 +70,4 @@ let v = new Vue({
     components: {App},
     template: '<App/>'
 })
-window.vm = v
+window.vm = v//将vue对象 赋值给window
