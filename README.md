@@ -79,3 +79,8 @@ row快速复制
 完善登录拦截
 1.路由拦截
 2.拦截器
+
+2019年8月6日11:45:22 
+cnpm install qrcode --save
+cnpm install jsbarcode --save 
+

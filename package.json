@@ -16,10 +16,12 @@
   "dependencies": {
     "axios": "^0.18.0",
     "iview": "^3.4.1",
+    "jsbarcode": "^3.11.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "lodash": "^4.17.11",
     "npm": "^6.5.0",
+    "qrcode": "^1.4.1",
     "to": "^0.2.9",
     "update": "^0.7.4",
     "vue": "^2.5.2",

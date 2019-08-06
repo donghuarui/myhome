@@ -38,6 +38,8 @@
         <MenuGroup title="留存">
           <MenuItem name="3-4">用户留存</MenuItem>
           <MenuItem name="3-5">流失用户</MenuItem>
+          <MenuItem name="QR_code">二维码研究</MenuItem>
+          <MenuItem name="Bar_code">条形码研究</MenuItem>
         </MenuGroup>
       </Submenu>
       <MenuItem name="4">
@@ -47,16 +49,21 @@
       <User></User>
     </Menu>
     <UserListModal ref = 'userListRef'></UserListModal>
+    <Qr_modal ref="qr_modalref"></Qr_modal>
+    <Bar_modal ref="bar_modalref"></Bar_modal>
     <!--<Button @click="testOne" size="large" type="success">点击</Button>-->
   </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
-import User from './user/user'
-import UserListModal from './user/UserListModal'
-export default {
-  components: {User, UserListModal},
+  import {mapActions} from 'vuex'
+  import User from './user/user'
+  import UserListModal from './user/UserListModal'
+  import Qr_modal from "./qr_code/qr_modal";
+  import Bar_modal from "./bar_code/bar_modal";
+
+  export default {
+    components: {Bar_modal, User, UserListModal, Qr_modal},
   name: 'myhead',
   data () {
     return {
@@ -73,6 +80,12 @@ export default {
       switch (name) {
         case 'userList' :
           this.userList()
+          break
+        case 'QR_code' :
+          this.$refs.qr_modalref.open_qr()
+          break
+        case 'Bar_code':
+          this.$refs.bar_modalref.open_bar()
           break
       }
     },
