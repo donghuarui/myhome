@@ -84,3 +84,36 @@ row快速复制
 cnpm install qrcode --save
 cnpm install jsbarcode --save 
 
+2019年8月12日11:27:34
+jsbarcode 文档
+https://www.jb51.net/article/111552.htm
+
+
+2020年1月14日13:44:59
+二维码导出到本地,canvas转换为img
+<div style="display: none">
+      <a id="downloadLink"></a>
+      <canvas id="msg"></canvas>
+    </div>
+
+      exportQR(p) {
+        console.log("导出", p)
+        let orgid = p.orgid
+        let toporgid = p.toporgid
+        let positionid = p._id
+        var msg = document.getElementById('msg')
+        let url = `http://cmcy-test.cloudvast.com/dc/index#/dc/home?orgid=${orgid}&positionid=${positionid}&toporgid=${toporgid}`
+        // 将获取到的数据（val）画到msg（canvas）上
+        QRCode.toCanvas(msg, url, function (error) {
+          console.log(error)
+        })
+        var canvas = document.getElementById('msg');
+        url = canvas.toDataURL('image/png');
+        // 构造a标签并模拟点击
+        var downloadLink = document.getElementById('downloadLink');
+        downloadLink.setAttribute('href', url);
+        downloadLink.setAttribute('download', p.name + '.png');
+        downloadLink.click();
+
+      }
+
