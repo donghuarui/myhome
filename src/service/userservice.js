@@ -16,6 +16,9 @@ export default {
   register (data) {
     return userapi.register(data)
   },
+  editUser (data) {
+    return userapi.editUser(data)
+  },
   deleteOne (data) {
     return userapi.deleteOne(data)
   }

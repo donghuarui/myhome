@@ -38,6 +38,13 @@ export default {
       params
     })
   },
+  editUser (params) {
+    return axios.request({
+      url: 'api/user/changeOne',
+      method: 'post',
+      params
+    })
+  },
   deleteOne (params) {
     return axios.request({
       url: 'api/user/deleteOne',

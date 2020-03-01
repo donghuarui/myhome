@@ -56,14 +56,16 @@
 </template>
 
 <script>
-  import {mapActions} from 'vuex'
-  import User from './user/user'
-  import UserListModal from './user/UserListModal'
-  import Qr_modal from "./qr_code/qr_modal";
-  import Bar_modal from "./bar_code/bar_modal";
+import {mapActions} from 'vuex'
+import User from './user/user'
+import UserListModal from './user/UserListModal'
+// eslint-disable-next-line camelcase
+import Qr_modal from './qr_code/qr_modal'
+// eslint-disable-next-line camelcase
+import Bar_modal from './bar_code/bar_modal'
 
-  export default {
-    components: {Bar_modal, User, UserListModal, Qr_modal},
+export default {
+  components: {Bar_modal, User, UserListModal, Qr_modal},
   name: 'myhead',
   data () {
     return {
